@@ -12,14 +12,14 @@ int main(){
         cin >> inp;
         pfxSum[i] = pfxSum[i-1] + inp;
     }
-    multiset<ll> maxSet;
+    multiset<ll> minSet;
     ll maxSum = INT64_MIN;
     for(ll i = a ; i < n + 1 ; i++){
-        maxSet.insert(pfxSum[i-a]);
+        minSet.insert(pfxSum[i-a]);
         if(i > b){
-            maxSet.erase(maxSet.find(pfxSum[i-b-1]));
+            minSet.erase(minSet.find(pfxSum[i-b-1]));
         }
-        maxSum = max(maxSum , pfxSum[i] - *maxSet.begin());
+        maxSum = max(maxSum , pfxSum[i] - *minSet.begin());
     }
     cout << maxSum << endl;
     return 0;
